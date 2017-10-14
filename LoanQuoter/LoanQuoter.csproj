@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="CSVParser\CsvReader.cs" />
     <Compile Include="DTO\Quote.cs" />
+    <Compile Include="Exceptions\CsvParserException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
