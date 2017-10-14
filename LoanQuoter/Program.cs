@@ -10,6 +10,7 @@ namespace LoanQuoter
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("HelloWorld");
         }
     }
 }
