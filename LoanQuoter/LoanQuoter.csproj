@@ -52,6 +52,7 @@
     <Compile Include="DTO\MonthlyQuote.cs" />
     <Compile Include="DTO\Quote.cs" />
     <Compile Include="Exceptions\CsvParserException.cs" />
+    <Compile Include="Helpers\QuoteComparer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quoter\InterestCalculator.cs" />

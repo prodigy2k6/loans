@@ -14,6 +14,7 @@ namespace LoanQuoter.CSVParser
     public class CsvReader : ICsvReader
     {
         private IFileHelperEngine<Quote> _engine;
+
         private readonly Logger _logger = LogManager.GetCurrentClassLogger(); 
 
         public CsvReader(IFileHelperEngine<Quote> engine)
