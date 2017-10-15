@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CsvReaderTests.cs" />
+    <Compile Include="InterestCalculatorTests.cs" />
     <Compile Include="MonthlyQuoteTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

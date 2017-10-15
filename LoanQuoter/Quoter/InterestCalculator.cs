@@ -14,6 +14,8 @@ namespace LoanQuoter.Quoter
 
         public const double months = 36.0;
 
+        public InterestCalculator() { }
+
         public InterestCalculator (List<MonthlyQuote> quotes)
         {
             LoanQuotes = quotes;
@@ -62,7 +64,7 @@ namespace LoanQuoter.Quoter
 
         }
 
-        public decimal CalculateYearlyRate (decimal principal, decimal interest )
+        internal decimal CalculateYearlyRate (decimal principal, decimal interest )
         {
             var proportionOfInterest = interest / principal;
 
@@ -71,7 +73,7 @@ namespace LoanQuoter.Quoter
             return (decimal)yearlyRate;
         }
 
-        public double CalculateMonthlyRepayment(decimal amountToRepay)
+        internal double CalculateMonthlyRepayment(decimal amountToRepay)
         {
             return ((double)amountToRepay) / months;
         }
