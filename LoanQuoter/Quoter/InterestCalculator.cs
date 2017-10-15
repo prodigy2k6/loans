@@ -18,9 +18,7 @@ namespace LoanQuoter.Quoter
 
         public InterestCalculator (List<MonthlyQuote> quotes)
         {
-            LoanQuotes = quotes;
-
-            LoanQuotes = LoanQuotes.OrderBy(x => x.CompoundedMonthlyRate).ToList();
+            LoanQuotes = quotes.OrderBy(x => x.CompoundedMonthlyRate).ToList();
         }
 
         public bool MoneyAvailable (decimal available)
@@ -73,12 +71,7 @@ namespace LoanQuoter.Quoter
             return (decimal)yearlyRate;
         }
 
-        internal double CalculateMonthlyRepayment(decimal amountToRepay)
-        {
-            return ((double)amountToRepay) / months;
-        }
-
-
+        internal double CalculateMonthlyRepayment(decimal amountToRepay) => ((double)amountToRepay) / months;
 
     }
 }
