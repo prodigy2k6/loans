@@ -31,7 +31,7 @@ namespace LoanQuoter.DTO
 
         internal decimal CalculateCompoundedRate(decimal rate)
         {
-            var compoundedRate = Math.Pow((double)rate, NumberOfMonths);
+            var compoundedRate = Math.Pow((double)(1+rate), NumberOfMonths) - 1;
 
             return (decimal) compoundedRate;
         }
