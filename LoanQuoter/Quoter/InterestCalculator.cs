@@ -6,7 +6,19 @@ using NLog;
 
 namespace LoanQuoter.Quoter
 {
-    public class InterestCalculator
+    public interface IInterestCalculator
+    {
+        bool MoneyAvailable(decimal available);
+
+        decimal CalculateMoneyBorrowed(decimal principal);
+        
+        decimal CalculateYearlyRate(decimal principal, decimal interest);
+
+        double CalculateMonthlyRepayment(decimal amountToRepay);
+
+    }
+
+    public class InterestCalculator : IInterestCalculator
     {
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
@@ -31,7 +43,7 @@ namespace LoanQuoter.Quoter
             var interest = 0.0m;
             var remainingAmount = principal;
 
-            foreach(var quote in LoanQuotes)
+            foreach(var quote in LoanQuotes.Where(x => x.Available > 0 && x.Rate != 0))
             {
                 if (remainingAmount <= 0)
                 {
@@ -59,10 +71,9 @@ namespace LoanQuoter.Quoter
             }
 
             return interest;
-
         }
 
-        internal decimal CalculateYearlyRate (decimal principal, decimal interest )
+        public decimal CalculateYearlyRate (decimal principal, decimal interest )
         {
             var proportionOfInterest = interest / principal;
 
@@ -71,7 +82,7 @@ namespace LoanQuoter.Quoter
             return (decimal)yearlyRate;
         }
 
-        internal double CalculateMonthlyRepayment(decimal amountToRepay) => ((double)amountToRepay) / months;
+        public double CalculateMonthlyRepayment(decimal amountToRepay) => ((double)amountToRepay) / months;
 
     }
 }
