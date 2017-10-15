@@ -10,6 +10,8 @@ namespace LoanQuoter.DTO
 
         private const int NumberOfMonths = 36;
 
+        public MonthlyQuote() { }
+
         public MonthlyQuote(Quote aQuote)
         {
             Lender = aQuote.Lender;
@@ -17,16 +19,17 @@ namespace LoanQuoter.DTO
             Available = aQuote.Available;
 
             MonthlyRate = CalculateMonthlyRate(Rate);
+            CompoundedMonthlyRate = CalculateCompoundedRate(MonthlyRate);
         }
 
-        public decimal CalculateMonthlyRate(decimal rate)
+        internal decimal CalculateMonthlyRate(decimal rate)
         {
-            var monthlyRate = Math.Pow((double)(1 + rate), (1 / 12)) - 1;
+            var monthlyRate = Math.Pow((double)(1 + rate), (1.0 / 12.0)) - 1;
 
             return (decimal) monthlyRate;
         }
 
-        public decimal CalculateCompoundedRate(decimal rate)
+        internal decimal CalculateCompoundedRate(decimal rate)
         {
             var compoundedRate = Math.Pow((double)rate, NumberOfMonths);
 
