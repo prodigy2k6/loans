@@ -6,7 +6,12 @@ using NLog;
 
 namespace LoanQuoter.CSVParser
 {
-    public class CsvReader
+    public interface ICsvReader
+    {
+        Quote[] GetQuotes(string path);
+    }
+
+    public class CsvReader : ICsvReader
     {
         private IFileHelperEngine<Quote> _engine;
         private readonly Logger _logger = LogManager.GetCurrentClassLogger(); 
