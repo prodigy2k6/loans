@@ -34,7 +34,7 @@ namespace LoanQuoter.CSVParser
             }
             catch (Exception ex)
             {
-                throw new CsvParserException($"Unable to parse csv file due to error '{ex.Message}'");
+                throw new CsvParserException(ex.Message);
             }
 
             _logger.Info($"{results.Length} Records read from file");

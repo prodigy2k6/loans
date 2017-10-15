@@ -1,27 +1,24 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Reflection;
 using LoanQuoter.CSVParser;
+using LoanQuoter.Exceptions;
 using LoanQuoter.DTO;
 using LoanQuoter.Quoter;
 using FileHelpers;
-using System.Collections.Generic;
-
-
 
 namespace LoanQuoter
 {
     public class Program
     {
         private static ICsvReader csvReader = new CsvReader(new FileHelperEngine<Quote>());
-       
+        private static Quote[] quotes; 
 
         static void Main(string[] args)
         {
             if (ValidateInput(args))
             {
-                var quotes = csvReader.GetQuotes(args[0]);
-
                 var monthlyQuotes = new List<MonthlyQuote>();
                 
                 foreach(var quote in quotes)
@@ -53,6 +50,20 @@ namespace LoanQuoter
                 }
             }
 
+        }
+
+        static bool LoadQuotes(string file)
+        {
+            try
+            {
+                quotes = csvReader.GetQuotes(file);
+                return true;
+            }
+            catch (CsvParserException ex)
+            {
+                Console.WriteLine($"Unable to parse csv file: {ex.Message}");
+                return false;
+            }
         }
 
         static bool ValidateInput(string[] args)
@@ -90,6 +101,9 @@ namespace LoanQuoter
                 Console.WriteLine($"File {fileLocation} does not exist. Please enter valid file");
                 return false;
             }
+
+            if (!LoadQuotes(args[0]))
+                return false;
 
             return true;
 
