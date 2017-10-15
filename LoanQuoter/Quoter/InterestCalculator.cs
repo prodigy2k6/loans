@@ -79,7 +79,7 @@ namespace LoanQuoter.Quoter
 
             var yearlyRate = Math.Pow((double)(proportionOfInterest + 1), (1.0 / (months / 12.0))) - 1;
 
-            return (decimal)yearlyRate;
+            return (decimal)yearlyRate * 100;
         }
 
         public double CalculateMonthlyRepayment(decimal amountToRepay) => ((double)amountToRepay) / months;
