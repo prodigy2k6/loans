@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Configuration;
 using LoanQuoter.DTO;
 using NLog;
 
@@ -24,7 +25,7 @@ namespace LoanQuoter.Quoter
 
         internal List<MonthlyQuote> LoanQuotes { get; set; }
 
-        public const double months = 36.0;
+        public double months = Double.Parse(ConfigurationManager.AppSettings["loanterm"]);
 
         public InterestCalculator() { }
 

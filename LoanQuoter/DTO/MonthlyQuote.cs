@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 
 namespace LoanQuoter.DTO
 {
@@ -8,7 +9,7 @@ namespace LoanQuoter.DTO
 
         public decimal CompoundedMonthlyRate { get; set; }
 
-        private const int NumberOfMonths = 36;
+        private double NumberOfMonths = Double.Parse(ConfigurationManager.AppSettings["loanterm"]);
 
         public MonthlyQuote() { }
 
