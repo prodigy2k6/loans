@@ -32,15 +32,15 @@ namespace LoanQuoterTest
             calcInterest.Should().Be(interest);
         }
 
-        [TestCase(1000, 100, 0.0322)]
-        [TestCase(1500, 200, 0.0426)]
+        [TestCase(1000, 100, 3.228)]
+        [TestCase(1500, 200, 4.26)]
         public void CalculateYearlyRate(decimal princial, decimal interest, decimal rate)
         {
             var intCalculator = new InterestCalculator();
 
             var calcRate = intCalculator.CalculateYearlyRate(princial, interest);
 
-            calcRate.Should().BeApproximately(rate,0.0001m);
+            calcRate.Should().BeApproximately(rate,0.001m);
         }
 
     }

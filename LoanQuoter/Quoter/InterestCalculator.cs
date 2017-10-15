@@ -43,7 +43,7 @@ namespace LoanQuoter.Quoter
             var interest = 0.0m;
             var remainingAmount = principal;
 
-            foreach(var quote in LoanQuotes.Where(x => x.Available > 0 && x.Rate != 0))
+            foreach(var quote in LoanQuotes.Where(x => x.Available > 0 && x.CompoundedMonthlyRate != 0))
             {
                 if (remainingAmount <= 0)
                 {
