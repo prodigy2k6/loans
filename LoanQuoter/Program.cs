@@ -106,7 +106,6 @@ namespace LoanQuoter
                 return false;
 
             return true;
-
         }
     }
 }

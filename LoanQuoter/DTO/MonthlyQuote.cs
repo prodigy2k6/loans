@@ -23,6 +23,11 @@ namespace LoanQuoter.DTO
             CompoundedMonthlyRate = CalculateCompoundedRate(MonthlyRate);
         }
 
+        /// <summary>
+        /// Calculates monthly rate
+        /// </summary>
+        /// <param name="rate"></param>
+        /// <returns></returns>
         internal decimal CalculateMonthlyRate(decimal rate)
         {
             var monthlyRate = Math.Pow((double)(1 + rate), (1.0 / 12.0)) - 1;
@@ -30,6 +35,11 @@ namespace LoanQuoter.DTO
             return (decimal) monthlyRate;
         }
 
+        /// <summary>
+        /// Calculates compounded rate over term of loan
+        /// </summary>
+        /// <param name="rate"></param>
+        /// <returns></returns>
         internal decimal CalculateCompoundedRate(decimal rate)
         {
             var compoundedRate = Math.Pow((double)(1+rate), NumberOfMonths) - 1;

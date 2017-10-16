@@ -31,14 +31,25 @@ namespace LoanQuoter.Quoter
 
         public InterestCalculator (List<MonthlyQuote> quotes)
         {
+            //Order loans by lowest rate first
             LoanQuotes = quotes.OrderBy(x => x.CompoundedMonthlyRate).ToList();
         }
 
+        /// <summary>
+        /// Checks if enough money is available
+        /// </summary>
+        /// <param name="available"></param>
+        /// <returns></returns>
         public bool MoneyAvailable (decimal available)
         {
             return LoanQuotes.Sum(x => x.Available) >= available;
         }
 
+        /// <summary>
+        /// Calculates interest for the loan
+        /// </summary>
+        /// <param name="principal"></param>
+        /// <returns></returns>
         public decimal CalculateMoneyBorrowed (decimal principal)
         {
             var interest = 0.0m;
@@ -74,6 +85,12 @@ namespace LoanQuoter.Quoter
             return interest;
         }
 
+        /// <summary>
+        /// Calculates yearly rate for interest
+        /// </summary>
+        /// <param name="principal"></param>
+        /// <param name="interest"></param>
+        /// <returns></returns>
         public decimal CalculateYearlyRate (decimal principal, decimal interest )
         {
             var proportionOfInterest = interest / principal;
@@ -83,6 +100,11 @@ namespace LoanQuoter.Quoter
             return (decimal)yearlyRate * 100;
         }
 
+        /// <summary>
+        /// Calculate monthly repayment rate
+        /// </summary>
+        /// <param name="amountToRepay"></param>
+        /// <returns></returns>
         public double CalculateMonthlyRepayment(decimal amountToRepay) => ((double)amountToRepay) / months;
 
     }
