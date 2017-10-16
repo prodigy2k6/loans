@@ -7,7 +7,7 @@
     <ProjectGuid>{38791E73-2743-4EEA-9730-4652A728D5BC}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>LoanQuoter</RootNamespace>
-    <AssemblyName>LoanQuoter</AssemblyName>
+    <AssemblyName>Quote</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
